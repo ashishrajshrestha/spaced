@@ -19,13 +19,13 @@
 <div class="spaces-container">
 <div class="row">
     <% @spaces.each do |space| %>
-    <div class="col-sm-2">
-      <div class="card" style="width: 18rem;">
-        <%= image_tag ('Space-5.jpg'), class: "card-img-top" %>
+    <div class="col-sm-3">
+      <div class="card" style="width: 250px">
+        <%= space.image %>
         <div class="card-body">
-          <h5 class="card-title"><%= space.location %></h5>
-          <p class="card-text"><%= space.capacity %></p>
-          <p class="card-text"><%= space.fee %></p>
+          <h4 class="card-title"><%= space.location %></h4>
+          <p class="card-text">👥 <%= space.capacity %></p>
+          <p class="card-text"><strong>¥ </strong><%= space.fee %></p>
         </div>
         <%= link_to "See space", space_path(space), class: "btn btn-primary mb-4" %>
       </div>
