@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Rent a space with SPACED</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
+  <head>
+    <title>Rent a space with SPACED</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
 
 <body>
-  <div class="jumbotron text-center">
-    <h1>No more worries about SPACES</h1>
-    <p>From rental spaces to rental conference rooms
-    <br>
-    Reservations can be made easily according to your needs</p>
+    <div class="jumbotron text-center">
+      <h1>No more worries about SPACES</h1>
+      <p>From rental spaces to rental conference rooms
+      <br>
+      Reservations can be made easily according to your needs</p>
 
-    <form class="d-flex align-items-center flex-nowrap">
-      <%= form_tag spaces_path, method: :get do %>
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Find a space"
-          %>
+      <form class="d-flex align-items-center flex-nowrap">
+        <%= form_tag spaces_path, method: :get do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Find a space"
+            %>
 
-          <%= submit_tag "Search", class: "btn btn-primary" %>
-      <% end %>
-  </div>
+            <%= submit_tag "Search", class: "btn btn-primary" %>
+        <% end %>
+    </div>
 
-<div class="spaces-container">
-  <div class="row">
-    <% @spaces.each do |space| %>
-    <div class="col-sm-3">
-      <div class="card" style="width: 250px, height: 400px">
-        <div class="portrait">
-          <img style='height: 220px; width: 100%; object-fit: cover' src="<%= space.photos.attached? ? cl_image_path(space.photos.first.key) : asset_path("Space-5.jpg") %>" alt="space.location">
-        </div>
-        <div class="card-body">
-          <h4 class="card-title"><%= fa_icon "map-marker"%> <%= space.location %></h4>
-          <p class="card-text"><%= fa_icon "users"%> <%= space.capacity %></p>
-          <p class="card-text"><%= fa_icon "jpy"%> <%= space.fee %></p>
-        </div>
-        <%= link_to "See space", space_path(space), class: "btn btn-primary mb-4" %>
+    <div class="spaces-container">
+      <div class="row">
+        <% @spaces.each do |space| %>
+          <div class="col-sm-3">
+            <div class="card" style="width: 250px, height: 400px">
+              <div class="portrait">
+                <img style='height: 220px; width: 100%; object-fit: cover' src="<%= space.photos.attached? ? cl_image_path(space.photos.first.key) : asset_path("Space-5.jpg") %>" alt="space.location">
+              </div>
+              <div class="card-body">
+                <h2><%= space.title %></h2>
+                <p class="card-title"><%= fa_icon "map-marker"%> <%= space.location %></p>
+                <p class="card-text"><%= fa_icon "users"%> <%= space.capacity %></p>
+                <p class="card-text"><%= fa_icon "jpy"%> <%= space.fee %></p>
+              </div>
+              <%= link_to "See space", space_path(space), class: "btn btn-primary mb-4" %>
+            </div>
+          </div>
+        <% end %>
       </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+    </div>
 
-<div style="width: 100%; height: 600px;"
-  data-controller="mapbox"
-  data-mapbox-markers-value="<%= @markers.to_json %>"
-  data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-
+    <div style="width: 100%; height: 600px;"
+      data-controller="mapbox"
+      data-mapbox-markers-value="<%= @markers.to_json %>"
+      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
 </body>
 </html>
