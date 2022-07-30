@@ -1,11 +1,11 @@
-<%= simple_form_for(booking, url:space_bookings_path(space_id: space.id)) do |f| %>
-  <div class="container mt-3">
-    <%= f.input :from, as: :date, html5: true %>
-  </div>
-  <div class="container mt-3">
-    <%= f.input :to, as: :date, html5: true %>
-  </div>
-  <div class="container mt-3">
-    <%= f.submit "Book this space", class: "btn btn-primary" %>
-  </div>
-<% end %>
+  <%= simple_form_for(booking, url:space_bookings_path(space_id: space.id)) do |f| %>
+    <div class="container mt-3">
+      <%= f.input :from, as: :date, html5: true %>
+    </div>
+    <div class="container mt-3">
+      <%= f.input :to, as: :date, html5: true %>
+    </div>
+    <div class="container mt-3">
+      <%= f.submit "Book this space", class: "btn btn-primary" %>
+    </div>
+  <% end %>

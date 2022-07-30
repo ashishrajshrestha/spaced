@@ -21,7 +21,7 @@
             <div class="card-body">
               <h5 class="card-title"><%= booking.space.title %></h5>
               <p class="card-text">Booked date: <%= booking.from %> - <%= booking.to %></p>
-              <p class="card-text">Impact HUB Tokyo is based in Meguro, Tokyo, Japan and it offers a place to collaborate, have fun, learn and connect.</p>
+              <p class="card-text"><%= booking.space.description %></p>
               <p class="card-text">Cost: <%= booking.space.fee %> JPY</p>
               <%= link_to 'Cancel', booking_path(booking), class: "btn btn-primary", method: :delete, data: { confirm: 'Are you sure?' } %>
               <%= link_to 'Home', spaces_path, class: "btn btn-secondary" %>
